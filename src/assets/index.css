@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.full{ @apply w-full h-full }
+
+body{ @apply full bg-gray text-white }
+
+
