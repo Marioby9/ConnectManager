@@ -90,11 +90,14 @@ Sigue estos pasos para configurar el proyecto en tu entorno local:
 
    - Modifica los filtros a tu gusto para que sean utilizables en el filtro de la web.
    <br>
+   
    ```javascript
+
     //YOU MUST MODIFY THIS PARAMS WITH YOUR API
     export const API_URL = "http://localhost/DWES/API-Connect/books"
     export const TABLE = "books"
     export const FILTERS = ['ID' , 'Autor', 'Genero', 'Pagina', 'Todos']
+
    ```
    <img src="./public/readmeFiles/filtro.webp"><br><br>
 
