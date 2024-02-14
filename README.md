@@ -5,7 +5,7 @@
   <img src="./src/assets/img/logo.webp"/>
   <br>
   <p align="center">
-    Componente para consumición de API REST. 
+    Componente para consumición de API REST.
   </p>
 </div>
 
@@ -22,6 +22,7 @@
     <li><a href="#requisitos-previos">Requisitos previos</a></li>
     <li><a href="#instalación">Instalación</a></li>
     <li><a href="#despliegue">Despliegue</a></li>
+    <li><a href="#demostración">Demostración</a></li>
     <li><a href="#contribuye">Contribuye</a></li>
     <li><a href="#licencia">Licencia</a></li>
     <li><a href="#contacto">Contacto</a></li>
@@ -33,20 +34,20 @@
 
 ## Resumen
 
-Bienvenido a NovaForge, tu plataforma gestora de domótica online. Un proyecto diseñado para mantener el control de tus espacios de una forma eficiente, intuitiva y fácil de usar. Podrás activar o desactivar tus ejecutores y gestionar tus sensores. 
-- En NovaForge, los usuarios pueden realizar una gestión de sus espacios añadiendo ejecutores y sensores.
-- Se pueden activar y desactivar ejecutores. Los sensores consumen datos de la aplicación Manager.
+Bienvenido a ConnectManager, una plataforma online para visualizar el contenido de tu API REST favorita. Obtén el resultado de tus peticiones con o sin parámetros. Copia la estructura JSON resultante de la petición. 
+- En ConnectManager, podrás realizar peticiones a tu API con o sin parámetros mediante un buscador con filtro modificable a tu gusto.
+- Podrás comprobar los resultados obtenidos en tus peticiones con una interfaz agradable, además de copiar la estructura JSON del contenido devuelto.
 
 ### Características Principales:
-- **Gestión de usuarios:** Regístrate e inicia sesión con tu propio usuario.
-- **Agregar y eliminar espacios:** Agrega un espacio para gestionar sus sensores y ejecutores.
-- **Activar y desactivar ejecutores:** Utiliza el interuptor de cada ejecutor para encenderlo o apagarlo. Además, puedes modificar su nombre
-- **Consume datos para cada sensor:** Solicita los datos al servidor de consumo de datos y obtén los valores de cada sensor. Puedes medir: temperatura, humedad, sonido, luminosidad...
+- **Peticiones a API:** Modifica la URL a la que solicitas y realiza peticiones.
+- **Filtrar por parámetros:** Realiza peticiones parametrizadas usando nuestro filtro.
+- **Visualiza el contenido:** Podrás ver toda la información obtenida de cada elemento en una interfaz intuitiva y agradable.
+- **Observa la estructura:** Comprueba la estructura de datos obtenida en la petición en un visor JSON. Podrás expandir y reducir el contenido. Además, podrás copiar toda la estructura al portapapeles.
 - **Interfaz Intuitiva:** Una interfaz de usuario amigable que facilita la navegación y el uso de las funcionalidades de la aplicación.
 
-Este proyecto busca proporcionar una aplicación sencilla y fácil de usar para que un usuario estándar pueda mantener el control de su hogar, permitiéndole gestionar totalmente sus propios dispositivos.
+Este proyecto busca proporcionar una aplicación sencilla y fácil de usar para que un usuario estándar pueda realizar peticiones a una API y observar su contenido de una manera cómoda e intuitiva.
 
-Siéntete libre de explorar, contribuir y adaptar este proyecto según tus necesidades específicas. ¡Disfruta de tu experiencia en NovaForge!
+Siéntete libre de explorar, contribuir y adaptar este proyecto según tus necesidades específicas. ¡Disfruta de tu experiencia en ConnectManager!
 
 ## Requisitos previos
 
@@ -60,14 +61,14 @@ Sigue estos pasos para configurar el proyecto en tu entorno local:
 
    - Copia la dirección de este repositorio e introduce el siguiente comando para clonar el repositorio a tu equipo local:
     ```bash
-    git clone https://github.com/Marioby9/NovaForge.git
+    git clone https://github.com/Marioby9/ConnectManager.git
     ```
 
 2. **Acceder al directorio del proyecto:**
 
    - Una vez ya te has traído todos los archivos del repositorio a tu equipo, debes moverte a la carpeta del directorio creado.
    ```bash
-   cd NovaForge
+   cd ConnectManager
    ```
 
 3. **Instalación de las dependencias:**
@@ -79,33 +80,23 @@ Sigue estos pasos para configurar el proyecto en tu entorno local:
     npm install
     ```
 
-4. **Modificación de Firebase:**
-  Tienes la posibilidad de utilizar nuestra base de datos común, ya que el fichero fb.js ya viene configurado con la API KEY y todos los datos necesarios para un uso correcto.
-  Si lo prefieres, puedes crear tú tu propia base de datos y configurarla a tu gusto:
+4. **Modificación de API Config:**
+  En la carpeta config de este repositorio, encontrarás un fichero APIConfig.js. Este fichero es la base de todo el proyecto y de su usabilidad. Deberás modificar estos parámetros a tu gusto. <br>
+  En API_URL introducirás la url completa de tu API REST. TABLE sería el valor al que quieres acceder. Por último FILTERS es una lista con los parámetros mediante los que realizarás las peticiones. Estos parámetros serán utilizables en el filtro de la página:
 
-   - Visita la página web oficial de [Firebase](https://firebase.google.com/).
+   - Modifica los parámetros en ./src/config/APIConfig.js
 
-   - Crea una base de datos para una aplicación web y nómbrala como quieras.
+   - Comprueba que la aplicación obtiene resultados.
 
-   - Coloca los parámetros de configuración de tu base de datos en el archivo fb.js en la carpeta src.
-
+   - Modifica los filtros a tu gusto para que sean utilizables en el filtro de la web.
+   <br>
    ```javascript
-   // Firebase Parameters
-   const firebaseConfig = {
-    apiKey: "AIzaSyBOOh2SgVKUfB9py_Bk-ONWsoHgAZuEgIE",
-    authDomain: "novaforge-bb5b4.firebaseapp.com",
-    projectId: "novaforge-bb5b4",
-    storageBucket: "novaforge-bb5b4.appspot.com",
-    messagingSenderId: "947172484435",
-    appId: "1:947172484435:web:7dd3344801c947e90f6da6",
-    measurementId: "G-L400S2DMWP"
-    }
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig)
-    const db = getFirestore()
-    const analytics = getAnalytics(app)
-    export const auth = getAuth()
+    //YOU MUST MODIFY THIS PARAMS WITH YOUR API
+    export const API_URL = "http://localhost/DWES/API-Connect/books"
+    export const TABLE = "books"
+    export const FILTERS = ['ID' , 'Autor', 'Genero', 'Pagina', 'Todos']
    ```
+   <img src="./public/readmeFiles/filtro.webp"><br><br>
 
 5. **Lanzamiento de la aplicación en local:**
     - Utiliza esta opción si estás desarrollando la aplicación.
@@ -116,12 +107,9 @@ Sigue estos pasos para configurar el proyecto en tu entorno local:
     ```
     - NPM acaba de abrir un puerto en tu equipo para alojar la aplicación en local.
 
-6. **Acceso al Usuario de Prueba:**
-   - Utiliza el siguiente usuario de prueba para acceder a la aplicación como cliente:
-     - Nombre usuario: `mario@mail.com`
-     - Contraseña: `mariomg`
 
-Ahora deberías poder acceder a tu proyecto a través de [http://localhost.com:5050]() (Por ejemplo) en tu navegador. Asegúrate de que las variables en los archivos de configuración de firebase estén configuradas correctamente y que las tablas y datos de prueba se hayan creado con éxito.
+
+Ahora deberías poder acceder a tu proyecto a través de [http://localhost.com:5050]() (Por ejemplo) en tu navegador. Asegúrate de que las variables en los archivos de configuración de API sean correctos, reciban respuesta y no obtengan error de CORS.
 
 ¡Listo! Tu entorno local está configurado para ejecutar el proyecto de página web en VUE con las variables globales personalizadas y datos de prueba. ¡Feliz desarrollo!
 
@@ -186,6 +174,13 @@ Si lo deseas, puedes desplegar tu proyecto VUE, en este caso tu modificación de
 
 
 <p align="right">(<a href="#readme-top">Volver arriba</a>)</p>
+
+
+## Demostración
+
+Aquí tienes una demostración previa de cómo se vería la aplicación, en caso de que haya recibido respuesta a las peticiones, todos los parámetros estén correctamente configurados y todas las dependencias estén instaladas.
+
+<img src="./public/readmeFiles/connectManager.webp"><br>
       
 <!-- CONTRIBUYE -->
 ## Contribuye
@@ -210,7 +205,7 @@ Distribuido bajo la licencia Apache License 2.0. Consulte `LICENCIA.txt` para ob
 
 Mario Martín Godoy - [@mariomg]() - mmartin.mrmg@gmail.com
 
-Enlace del proyecto: [https://github.com/Marioby9/NovaForge](https://github.com/Marioby9/NovaForge)
+Enlace del proyecto: [https://github.com/Marioby9/ConnectManager](https://github.com/Marioby9/ConnectManager)
 
 <p align="right">(<a href="#readme-top">Volver arriba</a>)</p>
 
