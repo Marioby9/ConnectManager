@@ -2,12 +2,17 @@
     <div class="mt-5 w-full flex flex-col items-center px-10 py-3 gap-5 ">
         <FilterComp :filters="FILTERS" @search="search" class="w-2/3"/>
         <div class="w-full flex gap-5">
-            <JsonViewer :value="JSONData" copyable sort theme="jv-light" class="w-2/5 border-2 h-96 max-h-96 overflow-y-scroll border-white bg-black"/>
+            <JsonViewer  :value="JSONData" copyable sort theme="jv-light" class="w-2/5 border-2 h-96 max-h-96 overflow-y-scroll border-white bg-black"/>
             <div class="w-3/5 flex flex-col px-3 gap-5 h-96 max-h-96 overflow-y-scroll">
                 <BookCard v-for="(elm, indx) in books" :key="indx" :book="elm" @showBook="showBook(elm)" />
             </div>
         </div>
-        
+
+        <ModalBook 
+            v-if="isModalOpen"
+            :book = currentBook
+            @close="isModalOpen = false" 
+        />
     </div>
 </template>
 
@@ -17,11 +22,14 @@
     import { FILTERS } from '@/config/APIConfig'
     import FilterComp from '@/components/FilterComp.vue'
     import BookCard from '@/components/BookCard.vue'
+    import ModalBook from '@/components/ModalBook.vue'
 
     //
 
+    const isModalOpen = ref(false)
     const books = ref([])
     const JSONData = reactive({})
+    const currentBook = ref({})
 
     //
 
@@ -31,7 +39,8 @@
     }
 
     const showBook = (book) => {
-        console.log(book)
+        currentBook.value = book
+        isModalOpen.value = true
     }
 
     onMounted( async () => {

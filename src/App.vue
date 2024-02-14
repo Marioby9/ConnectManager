@@ -1,11 +1,11 @@
 <template>
     <HeaderComp/>
-    <MainComp/>
+    <MainView/>
 </template>
 
 <script setup>
   import HeaderComp from '@/components/HeaderComp.vue'
-  import MainComp from '@/view/MainComp.vue';
+  import MainView from '@/view/MainView.vue';
 </script>
 
 <style scoped>
